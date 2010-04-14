@@ -203,7 +203,13 @@ module BBRuby
       '<a href="mailto:\2">\2</a>',
       'Link to email address',
       '[email]wadus@wadus.com[/email]',
-      :email]
+      :email],
+    'Latex' => [
+      /\[tex\](.*?)\[\/tex\]/mi,
+      '<img src="http://chart.apis.google.com/chart?cht=tx&chl=\1" alt="" />',
+      'Display latex',
+      'Show latex on google chart api: ',
+      :latex]
   }
 
   class << self
