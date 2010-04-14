@@ -209,6 +209,12 @@ module BBRuby
       '<img src="http://chart.apis.google.com/chart?cht=tx&chl=\1" alt="" />',
       'Display latex',
       'Show latex on google chart api: ',
+      :latex],
+    'Latex (resized)' => [
+      /\[tex(:.+)? size=(.*?)\](.*?)\[\/tex\]/mi,
+      '<img src="http://chart.apis.google.com/chart?cht=tx&chl=\3&chs=\2" alt="" />',
+      'Display latex',
+      'Show latex on google chart api: ',
       :latex]
   }
 
