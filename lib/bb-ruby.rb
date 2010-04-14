@@ -308,7 +308,8 @@ module BBRuby
         # this works nicely because the default is disable and the default set of tags is [] (so none disabled) :)
         tags_definition.each_value { |t| text.gsub!(t[0], t[1]) unless tags.include?(t[4]) }
       end
-      text.gsub!(/chl\=(.*?)\"/mi, "chl="+ ($1 ? CGI.escape($1) : "") +"\"")
+      text.match(/chl\=(.*?)\"/m)
+      text.gsub!(/chl\=(.*?)\"/m, "chl="+ ($1 ? CGI.escape($1) : "") +"\"")
       text
     end
     
