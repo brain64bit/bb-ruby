@@ -1,6 +1,8 @@
 $:.unshift(File.dirname(__FILE__)) unless
   $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
 
+require 'cgi'
+
 module BBRuby
   VERSION = '0.9.6'
 
@@ -212,7 +214,7 @@ module BBRuby
       :latex],
     'Latex (resized)' => [
       /\[tex(:.+)? size=(.*?)\](.*?)\[\/tex\]/mi,
-      '<img src="http://chart.apis.google.com/chart?cht=tx&chl=\3&chs=\2" alt="" />',
+      '<img src="http://chart.apis.google.com/chart?cht=tx&chs=\2&chl=\3" alt="" />',
       'Display latex',
       'Show latex on google chart api: ',
       :latex]
@@ -306,7 +308,7 @@ module BBRuby
         # this works nicely because the default is disable and the default set of tags is [] (so none disabled) :)
         tags_definition.each_value { |t| text.gsub!(t[0], t[1]) unless tags.include?(t[4]) }
       end
-      
+      text.gsub!(/chl\=(.*?)\"/mi, "chl="+CGI.escape($1)+"\"")
       text
     end
     
