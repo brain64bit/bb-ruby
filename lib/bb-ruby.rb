@@ -214,7 +214,7 @@ module BBRuby
       :latex],
     'Latex (resized)' => [
       /\[tex(:.+)? size=(.*?)\](.*?)\[\/tex\]/mi,
-      '<img src="http://chart.apis.google.com/chart?cht=tx&chs=\2&chl=\3" alt="" />',
+      '<img src="http://chart.apis.google.com/chart?cht=tx&chs=\2&latex_data=\3" alt="" />',
       'Display latex',
       'Show latex on google chart api: ',
       :latex]
@@ -308,8 +308,8 @@ module BBRuby
         # this works nicely because the default is disable and the default set of tags is [] (so none disabled) :)
         tags_definition.each_value { |t| text.gsub!(t[0], t[1]) unless tags.include?(t[4]) }
       end
-      while text.match(/chl\=(.*?)\"/m)
-        text.sub!(/chl\=(.*?)\"/m, "chl="+ ($1 ? CGI.escape($1) : "") +"\"")
+      while text.match(/latex_data\=(.*?)\"/m)
+        text.sub!(/latex_data\=(.*?)\"/m, "chl="+ ($1 ? CGI.escape($1) : "") +"\"")
       end
       text
     end
