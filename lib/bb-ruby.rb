@@ -293,7 +293,7 @@ module BBRuby
       
       # escape "<, >, &" to remove any html
       if escape_html
-        text.gsub!( '&', '&amp;' )
+        #text.gsub!( '&', '&amp;' )
         text.gsub!( '<', '&lt;' )
         text.gsub!( '>', '&gt;' )
       end
